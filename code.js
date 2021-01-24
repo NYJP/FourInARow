@@ -45,14 +45,14 @@ renderBoard();
 
 document.querySelectorAll('button').forEach(function(element){
   
-  element.onclick = function(){
+  element.addEventListener('click',function(){
     if (!(inputlock)){
       console.log(element.id);
       turn ++;
       inputlock = true;
       place(parseInt(element.id.substr(3),10));
     }
-  }
+  })
   
 })
 
