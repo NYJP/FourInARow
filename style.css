@@ -1,10 +1,14 @@
-
+:root {
+  --x: 50px;
+  --y: 300px;
+  --y2: 350px;
+}
   
 .square{
-    height: 50px;
-    width: 50px;
+    height: var(--x);
+    width: var(--x);
     background-image: url('empty.png');
-    background-size: 50px , 50px;
+    background-size: var(--x) , var(--x);
     position: absolute;
   }
   
@@ -17,16 +21,16 @@
 
 .buttons{
     background-color: red;
-    height: 300px;
-    width: 50px;
+    height: var(--y);
+    width: var(--x);
     position: relative;
     z-index: 2;
-    visibility: show;
+    opacity:0;
 }
 
 #boardInner{
-  height: 300px;
-  width: 350px;
+  height: var(--x);
+  width: var(--y2);
   margin: auto;
   position: relative;
 }
