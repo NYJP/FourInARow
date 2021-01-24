@@ -4,7 +4,7 @@ var turn = -1;
 var situ = []
 var inputlock = false;
 var root = document.documentElement;
-var newx = Math.round((Math.min(window.innerWidth,window.innerHeight) * 1) / 7);
+var newx = Math.round((Math.min(window.innerWidth,window.innerHeight) * 0.8) / 7);
 
 $(window).resize(function() {
   updatesq();
@@ -105,7 +105,7 @@ function ani(col,row,trow,color){
 }
 
 function updatesq(){
-  newx = Math.round((Math.min(window.innerWidth,window.innerHeight) * 1) / 7);
+  newx = Math.round((Math.min(window.innerWidth,window.innerHeight) * 0.8) / 7);
   console.log(newx);
   root.style.setProperty('--x', String(newx) + 'px');
   root.style.setProperty('--y', String(newx*6) + 'px');
