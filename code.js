@@ -1,95 +1,38 @@
-var size = 150;
 
-var file = txttoarray(readFile("vocab.csv"));
+var board = document.getElementById('boardInner');
 
-for (var l=0; l<file.length; l++){
-    var word = document.createElement("DIV");
-    word.className = "word"
-    for (var i=0; i<file[l].length; i++){
-        var element = document.createElement("DIV");
-        element.innerHTML = file[l][i];    
-        if (i>0) element.className = "boxelements"                
-        word.appendChild(element);                               
+const renderBoard1 = () =>{
+  for (var i = 0; i < 6; ++i){
+    var row = document.createElement('DIV');
+    row.className = 'row';
+    for (var j = 0; j < 7; ++j){
+      var square = document.createElement('DIV');
+      square.className = 'square';
+      square.style.left = String(j*50) + 'px';
+      square.style.top = String(i*50)+'px';
+
+      row.appendChild(square);
     }
-    document.getElementById("list").appendChild(word);
-}
+    board.appendChild(row);
+  }   
 
-function txttoarray(txt){
-    var temp = '';
-    var line = [];
-    var result = [];
-    var chr = '';
-    for (var i=0; i<txt.length; i++){
-        chr = txt.charAt(i);
-        if (chr == ','){
-            line.push(temp);
-            temp = '';
-        }else if (chr == '\n'){
-            line.push(temp);
-            temp = '';
-            result.push(line);
-            line = [];
-        }else{
-            temp += chr;
-        }
-    }
-    line.push(temp);
-    result.push(line);
-    return result;
-}
-
-function readFile(file){
-    var f = new XMLHttpRequest();
-    var res = '';
-    f.open("GET", file, false);
-    f.onreadystatechange = function ()
-    {
-        if(f.readyState === 4)
-        {
-            if(f.status === 200 || f.status == 0)
-            {
-                res= f.responseText;
-            }
-        }
-    }
-    f.send(null);
-    return res;
-}
-
-function display(){
+  for (var i = 0; i < 7; ++i){
+    var button = document.createElement('button');
+    button.className = 'buttons';
+    button.id = 'row' + String(i+1);
+    board.appendChild(button);
     
+  }
+
+ 
 }
 
-function updateview(){
-    document.documentElement.style.setProperty('--size',String(size) +'px');
-    document.documentElement.style.setProperty('--fsize',String(size/10) +'px');
+renderBoard1();
 
-    if (document.getElementById('mode').innerHTML == 'Mode: List'){
-        document.documentElement.style.setProperty('--boxorline',String(size/15*2) +'px');
-    }else{
-        document.documentElement.style.setProperty('--boxorline',String(size) +'px');
+document.querySelectorAll('button').forEach(function(element){
+  if (document.querySelector(element.id) !== null){
+    document.querySelector(element.id).onclick() = function(){
+      console.log(element);
     }
-}
-
-document.getElementById('mode').onclick = function(){
-    if (document.getElementById('mode').innerHTML == 'Mode: Box'){
-        document.documentElement.style.setProperty('--boxorlineele','none');
-        document.getElementById('mode').innerHTML = 'Mode: List';
-    }else{
-        document.documentElement.style.setProperty('--boxorlineele','block');
-        document.getElementById('mode').innerHTML = 'Mode: Box';
-    }
-    updateview()
-}
-
-document.getElementById('zoomin').onclick = function(){
-    size+=30;
-    updateview()
-}
-
-document.getElementById('zoomout').onclick = function(){
-    if (size > 100) size-=30;
-    updateview()
-}
-
-display();
+  }
+})
