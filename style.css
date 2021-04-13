@@ -1,38 +1,28 @@
 :root {
-  --x: 50px;
-  --y: 300px;
-  --y2: 350px;
-}
-  
-.square{
-    height: var(--x);
-    width: var(--x);
-    background-image: url('empty.png');
-    background-size: var(--x) , var(--x);
-    position: absolute;
-  }
-  
-  
-.row{
-    display: flex;
-    position: absolute;
-    z-index: 1;
-  }
-
-.buttons{
-    background-color: red;
-    height: var(--y);
-    width: var(--x);
-    position: relative;
-    z-index: 2;
-    opacity:0;
+    --boxorline: 150px;
+    --boxorlineele: block;
+    --size: 150px;
+    --fsize: 15px;
 }
 
-#boardInner{
-  height: var(--x);
-  width: var(--y2);
-  margin: auto;
-  position: relative;
+.boxelements{
+    display: var(--boxorlineele);
 }
 
+.word{
+    float: left;
+    background-color: grey;
+    border-style: solid;
+    font-size: var(--fsize);
+    width: var(--size);
+    height: var(--boxorline);
+    margin:5px;
+    padding: 10px;
+}
 
+#zoomin, #zoomout{
+    margin-top:10px;
+    margin-left:10px;
+    width: 30px;
+    height: 30px;
+}
